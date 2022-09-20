@@ -10,6 +10,13 @@
  *      数组（array）
  *      函数（function）
  */
+
+/**
+ * 十进制：没有前导0的数值。
+ * 八进制：有前缀0o或0O的数值，或者有前导0、且只用到0-7的八个阿拉伯数字的数值。
+ * 十六进制：有前缀0x或0X的数值。
+ * 二进制：有前缀0b或0B的数值。
+ */
 // typeof 运算符
 typeof 123
 function f(){}
@@ -63,5 +70,50 @@ console.log(parseInt(1.23)); // 1
 // 等同于
 parseInt('1.23'); // 1
 
+
 // 进制转换
-parseInt()
+parseInt('1000'); // 1000
+// 等同于
+parseInt('1000', 10); // 1000
+
+parseInt('1000', 2); // 8
+parseInt('1000', 6); // 216
+parseInt('1000', 8); // 512
+
+
+// 特别示例
+parseInt(011, 2) // NaN
+
+// 等同于
+parseInt(String(011), 2)
+
+// 等同于
+parseInt(String(9), 2)
+
+// JavaScript 不再允许将带有前缀0的数字视为八进制数，
+// 而是要求忽略这个0。但是，为了保证兼容性，大部分浏览器并没有部署这一条规定。
+
+
+// https://wangdoc.com/javascript/types/number.html#parsefloat
+parseFloat('3.14');
+parseFloat('314e-2'); // 3.14
+parseFloat('0.0314E+2'); // 3.14
+parseFloat('3.14more non-digit characters') // 3.14
+parseFloat('\t\v\r12.34\n ') // 12.34
+parseFloat([1.23]) // 1.23
+// 等同于
+parseFloat(String([1.23])) // 1.23
+// 如果字符串的第一个字符不能转化为浮点数，则返回NaN。
+parseFloat('FF2') // NaN
+
+// parseFloat会将空字符串转为NaN。
+// 这些特点使得parseFloat的转换结果不同于Number函数。
+
+
+// isFinite方法返回一个布尔值，表示某个值是否为正常的数值。
+isFinite(Infinity) // false
+isFinite(-Infinity) // false
+isFinite(NaN) // false
+isFinite(undefined) // false
+isFinite(null) // true
+isFinite(-1) // true
