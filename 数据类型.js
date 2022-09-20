@@ -53,3 +53,15 @@ if ({}) {
 // 唯一有区别的场合是，+0或-0当作分母，返回的值是不相等的。
 // 除以正零得到+Infinity，除以负零得到-Infinity，这两者是不相等的
 (1 / +0) === (1 / -0); // false
+
+
+// 与数值相关的全局方法
+parseInt('1234');
+
+console.log(parseInt("   342")); // 空格会被自动去除
+console.log(parseInt(1.23)); // 1
+// 等同于
+parseInt('1.23'); // 1
+
+// 进制转换
+parseInt()
