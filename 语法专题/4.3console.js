@@ -94,3 +94,7 @@ console.trace();
 
 // console.clear() 清除当前控制台所有输出
 console.clear();
+
+
+// https://wangdoc.com/javascript/features/console.html#%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%91%BD%E4%BB%A4%E8%A1%8C-api
+// 控制台命令api
