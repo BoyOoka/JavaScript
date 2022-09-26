@@ -125,3 +125,66 @@ var o = {
 }
 // https://wangdoc.com/javascript/oop/this.html#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9
 o.f()
+
+// 绑定 this 的方法.JavaScript 提供了call、apply、bind这三个方法，来切换/固定this的指向
+var obj = {} ;
+var f = function f(){
+  return this;
+};
+
+console.log(f.call(obj) == obj);
+// 全局环境运行函数f时，this指向全局环境（浏览器为window对象）；
+// call方法可以改变this的指向，指定this指向对象obj，然后在对象obj的作用域中运行函数f
+
+var n = 123;
+var obj = { n: 456 };
+
+function a() {
+  console.log(this.n);
+}
+
+a.call(); // 123
+a.call(null); // 123
+a.call(undefined); // 123
+// a.call(window) // 123
+a.call(obj); // 456
+
+// call的第一个参数就是this所要指向的那个对象，后面的参数则是函数调用时所需的参数
+// func.call(thisValue, arg1, arg2, ...)
+
+// Function.prototype.apply()
+// 与function.call 一致，唯一的区别是数组作为执行参数
+// func.apply(thisValue, [arg1, arg2, arg3....])
+
+function f2(x, y){
+  console.log(x + y);
+}
+
+f2.call(null, 1, 1); // 2
+f2.apply(null, [1, 1]); // 2
+
+// 将数组的空元素变为undefined
+var b = [1,2,3,4,5,6,7,8,99];
+var a = ['a', , 'b'];
+console.log('Max data', Math.max.apply(null, b));
+function print(i) {
+  console.log(i);
+}
+
+a.forEach(print)
+// a
+// b
+
+Array.apply(null, a).forEach(print)
+
+// bind绑定this的对象
+var counter = {
+  count: 0,
+  inc: function () {
+    this.count++;
+  }
+};
+
+var func = counter.inc.bind(counter);
+func();
+counter.count // 1
