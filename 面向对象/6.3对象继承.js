@@ -111,3 +111,4 @@ s.hello // 'hello'
 s.world // 'world'
 
 // https://wangdoc.com/javascript/oop/prototype.html#%E6%A8%A1%E5%9D%97
+// 模块 略
